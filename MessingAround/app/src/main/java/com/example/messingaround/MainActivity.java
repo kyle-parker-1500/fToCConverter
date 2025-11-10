@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     Button descriptionChangeButton;
+    TextView descriptionTextView;
 
     @Override
     protected void onCreate(Bundle steven) {
@@ -23,14 +24,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         descriptionChangeButton = (Button) findViewById(R.id.changeDescriptionButton);
+        descriptionTextView = (TextView) findViewById(R.id.changeDescriptionButton);
         descriptionChangeButton.setOnClickListener(new View.OnClickListener() {
-            TextView descriptionTextView = (TextView) findViewById(R.id.changeDescriptionButton);
             boolean isVisible = false;
             @Override
             public void onClick(View v) {
-                isVisible = !isVisible;
-                if (!isVisible)
-                    descriptionTextView.setVisibility(View.INVISIBLE);
+                if (!isVisible) {
+                    descriptionChangeButton.setVisibility(View.INVISIBLE);
+                }
+                if (descriptionTextView.getVisibility() == View.INVISIBLE) {
+                    Toast.makeText(getApplicationContext(), "It's invisible!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "It's not invisible and I don't know what it's gonna do!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
